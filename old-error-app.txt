@@ -1,0 +1,48 @@
+
+
+// get webcam 
+const web_cam = document.getElementById('camara_video');
+const cam = document.getElementById('cam')
+const desktop = document.getElementById('desktop')
+
+const camStats = localStorage.getItem('camstats')
+
+
+const camShare = (vide = false, audi=false) => {
+    navigator.mediaDevices.getUserMedia({video: vide, audio: audi})
+    .then(stream => {
+        web_cam.srcObject = stream;
+        web_cam.play()
+
+    })
+    .catch(error => {
+        console.log(error);
+    })
+}
+const screenShare = (vide = false, audi=false) => {
+    
+    navigator.mediaDevices.getDisplayMedia({video: vide, audio: audi})
+    .then(stream => {
+        web_cam.srcObject = stream;
+        web_cam.play()
+
+    })
+    .catch(error => {
+        console.log(error);
+    })
+}
+
+// let camStatus = 'off'
+
+cam.onclick = (e) => {
+
+    camShare(true)
+
+}
+
+
+desktop.onclick = ( e) => {
+    // screenShare(true)
+    
+}
+
